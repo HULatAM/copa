@@ -2,6 +2,9 @@ Param(
 	[Parameter(Mandatory=$true)]
 	[string]$ver
 )
+
+Write-Host "Version: $ver"
+
 # setup docker to deploy into the cluster
 minikube docker-env | Invoke-Expression
 
@@ -9,7 +12,7 @@ minikube docker-env | Invoke-Expression
 docker build -t copa:$ver -f Dockerfile .
 
 # Fill out the YAML template file to have the correct version
-$template = Get-Content kube_uat.template.yaml -raw
+$template = Get-Content kube.template.yaml -raw
 $yaml = $template -replace "{{VERSION}}",$ver
 $yaml | Set-Content -Path kube.yaml
 
