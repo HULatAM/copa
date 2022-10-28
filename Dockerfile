@@ -1,4 +1,4 @@
 FROM nginx
-LABEL maintainer="user<user@host.com>"
+LABEL maintainer="dmunoz<dmunoz31975@gmail.com>"
 
 COPY ./website /usr/share/nginx/html
